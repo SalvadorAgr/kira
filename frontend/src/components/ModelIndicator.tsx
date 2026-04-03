@@ -35,43 +35,30 @@ export const ModelIndicator: React.FC = () => {
     const isOllama = modelStatus.current_model === 'ollama';
 
     return (
-        <div className="flex items-center justify-between px-4 py-3 glass-card border-b border-white/5 backdrop-blur-xl">
-            <div className="flex items-center gap-3">
-                <div className={`p-2 rounded-lg ${
-                    isLocal ? 'bg-primary-500/20' : 'bg-accent-500/20'
+        <div className="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.18)]">
+            <div className="flex items-center gap-2">
+                <div className={`flex h-6 w-6 items-center justify-center rounded-full ${
+                    isLocal ? 'bg-white/10 text-white/85' : 'bg-white/10 text-white/85'
                 }`}>
-                    {isLocal && <Cpu size={18} className="text-primary-400" />}
-                    {isOllama && <Cloud size={18} className="text-accent-400" />}
+                    {isLocal && <Cpu size={13} />}
+                    {isOllama && <Cloud size={13} />}
                 </div>
-                <div>
-                    <div className="text-sm text-white font-semibold">
-                        Modelo {modelStatus.current_model === 'local' ? 'Local' : 'Ollama'}
+                <div className="leading-tight">
+                    <div className="text-[11px] font-medium text-white">
+                        {modelStatus.current_model === 'local' ? 'Modelo local' : 'Modelo Ollama'}
                     </div>
-                    <div className="text-xs text-slate-400">
+                    <div className="text-[10px] text-white/55">
                         {(isLocal && modelStatus.local_available) || (isOllama && modelStatus.ollama_available)
-                            ? 'Conectado y activo'
-                            : 'Error de conexión'
+                            ? 'Activo'
+                            : 'Sin conexión'
                         }
                     </div>
                 </div>
-            </div>
-            
-            <div className="flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                <div className={`ml-1 h-2 w-2 rounded-full ${
                     (isLocal && modelStatus.local_available) || (isOllama && modelStatus.ollama_available)
-                        ? 'bg-success-400 shadow-lg shadow-success-400/50 animate-pulse'
-                        : 'bg-red-400 shadow-lg shadow-red-400/50'
+                        ? 'bg-[#29ff4f] shadow-[0_0_10px_rgba(41,255,79,0.65)]'
+                        : 'bg-red-400 shadow-[0_0_10px_rgba(248,113,113,0.55)]'
                 }`} />
-                <span className={`text-xs font-medium ${
-                    (isLocal && modelStatus.local_available) || (isOllama && modelStatus.ollama_available)
-                        ? 'text-success-400'
-                        : 'text-red-400'
-                }`}>
-                    {(isLocal && modelStatus.local_available) || (isOllama && modelStatus.ollama_available)
-                        ? 'Activo'
-                        : 'Error'
-                    }
-                </span>
             </div>
         </div>
     );
