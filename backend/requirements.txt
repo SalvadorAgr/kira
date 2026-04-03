@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+langchain
+langchain-community
+ollama
+pydantic
+scikit-learn
+httpx
+SpeechRecognition
+gTTS
+pydub
+python-multipart
+aiofiles

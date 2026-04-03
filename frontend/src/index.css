@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply bg-transparent h-full w-full overflow-hidden font-sans;
+    background-color: transparent !important;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+  #root {
+    @apply h-full w-full;
+  }
+}
+
+@layer components {
+  /* Premium Glass Panel */
+  .glass-panel {
+    @apply bg-neutral-900/20 backdrop-blur-xl border border-white/[0.08];
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.02) 0%, 
+      rgba(255, 255, 255, 0.01) 100%);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* Enhanced Glass Variants */
+  .glass-subtle {
+    @apply bg-white/[0.02] backdrop-blur-md border border-white/[0.05];
+  }
+
+  .glass-strong {
+    @apply bg-neutral-900/40 backdrop-blur-2xl border border-white/[0.12];
+  }
+
+  /* Premium Button Styles */
+  .btn-primary {
+    @apply bg-gradient-to-r from-accent-500 to-accent-400 text-white px-4 py-2 rounded-xl;
+    @apply hover:from-accent-400 hover:to-accent-300 transition-all duration-200;
+    @apply shadow-glow hover:shadow-glow-lg;
+  }
+
+  .btn-ghost {
+    @apply bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08];
+    @apply hover:border-white/[0.15] transition-all duration-200;
+  }
+
+  /* Status Indicators */
+  .status-online {
+    @apply bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)];
+  }
+
+  .status-loading {
+    @apply bg-accent-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.5)];
+  }
+
+  /* Premium Scrollbar */
+  .scrollbar-premium {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+
+  .scrollbar-premium::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-premium::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .scrollbar-premium::-webkit-scrollbar-thumb {
+    @apply bg-white/20 rounded-full hover:bg-white/30;
+    transition: background-color 0.2s ease;
+  }
+
+  /* Message Bubbles */
+  .message-user {
+    @apply bg-gradient-to-br from-accent-500/20 to-accent-600/20;
+    @apply border border-accent-400/30 backdrop-blur-md;
+    box-shadow: 0 4px 20px rgba(34, 211, 238, 0.1);
+  }
+
+  .message-assistant {
+    @apply bg-white/[0.03] border border-white/[0.08] backdrop-blur-md;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Input Field */
+  .input-premium {
+    @apply bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3;
+    @apply focus:border-accent-400/50 focus:bg-white/[0.05] transition-all duration-200;
+    @apply placeholder:text-neutral-500;
+  }
+}
+
+/* Draggable region for Electron */
+.app-drag-region {
+  -webkit-app-region: drag;
+}
+
+button, input, textarea, select {
+  -webkit-app-region: no-drag;
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
